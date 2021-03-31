@@ -94,34 +94,38 @@ namespace ParserExcel
             //Regex regexAllowance = new Regex(@"Предельные_размеры(\w*)");
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);                                                      
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);                                                      
                     
-                    var fi1 = new FileInfo(files.First());
-                    long length = new System.IO.FileInfo(fi1.FullName).Length;
-                    if (length > 3000000)                    
-                        pricePath = files.First();                        
-                    
-                    else if(length < 3000000)
-                        allowancePath = files.First();
+                var fi1 = new FileInfo(files.First());
+                long length = new System.IO.FileInfo(fi1.FullName).Length;
+                if (length > 3000000)
+                {
+                    pricePath = files.First();
+                    TextBoxOne.Text = pricePath;
+                }
+                else if(length < 3000000)
+                {
+                    allowancePath = files.First();
+                    TextBoxTwo.Text = allowancePath;
+                }
 
-                    //foreach
-                    //MatchCollection matches = regexAllowance.Matches(filePath);
-                    //if (matches.Count > 0)
-                    //    allowancePath = filePath;
-                    //else
-                    //    pricePath = filePath;
-                    //MatchCollection matches1 = regexPrice.Matches(filePath);
-                    //if (matches1.Count > 0)
-                    //    pricePath = filePath;
-                    //else
-                    //    allowancePath = filePath;
-                
+
+                //foreach
+                //MatchCollection matches = regexAllowance.Matches(filePath);
+                //if (matches.Count > 0)
+                //    allowancePath = filePath;
+                //else
+                //    pricePath = filePath;
+                //MatchCollection matches1 = regexPrice.Matches(filePath);
+                //if (matches1.Count > 0)
+                //    pricePath = filePath;
+                //else
+                //    allowancePath = filePath;
+
             }
 
             var listbox = sender as Canvas;
             listbox.Background = new SolidColorBrush(Color.FromRgb(226, 226, 226));
-            TextBoxOne.Text = pricePath;
-            TextBoxTwo.Text = allowancePath;
         }
 
 
